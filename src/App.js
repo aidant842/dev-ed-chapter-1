@@ -1,23 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useState, useEffect} from "react"
+// Import components
+import TweetList from "./components/TweetList";
+import CreateTweet from "./components/CreateTweet";
 
 function App() {
+  // Here is the place to write regular JS
+
+  // State
+  const [name, setName] = useState('Dev Ed');
+  const [textInput, setTextInput] = useState('');
+  const [tweets, setTweets] = useState([]);
+
+  // Effects
+  useEffect(() => {
+    console.log("we run a function");
+  }, [textInput]);
+
+  //Variables
+  const message = 'Hello'
+  
+  //Functions
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <CreateTweet textInput={textInput} setTextInput={setTextInput} tweets={tweets} setTweets={setTweets} />
+      <TweetList  tweets={tweets} name={name} setTweets={setTweets} />
     </div>
   );
 }
